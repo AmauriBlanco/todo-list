@@ -1,16 +1,10 @@
-import { getAllCards } from "../../../api/controller/cardController.js";
-import { setDraggableEvent } from "../events/dragCardEvent.js";
-import { btnDel } from "./deleteCard.js";
-
-export function listAllCards() {
-    getAllCards()
-        .then((data) => {
-            const cards = data.map((card) => {
-                return `
+export function createCardElement(card) {
+    const statusContainer = document.querySelector(`.${card.status} .cards-container`)
+    const cardElement =  `
             <div class="card" draggable="true" id="${card.id}">
                 <header>
                     <h3>${card.title}</h3>
-                    <span class="status"></span>
+                    <span class="status" data-status="${card.status}"></span>
                 </header>
                 ${card.description ? `<p>${card.description}</p>` : ""}
                 <button class="delete-item">
@@ -22,23 +16,5 @@ export function listAllCards() {
                 </button>
             </div>
         `;
-            });
-            clearCards();
-            cards.forEach((card) => {
-                const cardsContainer =
-                    document.querySelectorAll(".cards-container");
-                cardsContainer[0].innerHTML += card;
-
-                setDraggableEvent();
-                btnDel();
-            });
-        })
-        .catch((error) => {
-            console.error("Houve um problema:", error);
-        });
-}
-
-function clearCards() {
-    const cardsContainer = document.querySelectorAll(".cards-container");
-    cardsContainer[0].innerHTML = "";
+        return statusContainer.innerHTML += cardElement;
 }

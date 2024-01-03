@@ -1,5 +1,5 @@
-import { listAllCards } from "./card/showCards.js";
-import { addNewCard } from "./card/newCard.js";
+import { listAllCards } from "./card/dom/showCards.js";
+import { addNewCard } from "./card/create/newCard.js";
 import { openModal, closeModal } from "./events/modalEvents.js";
 
 const btnCreateNewCard = document.getElementById("new-item-icon");

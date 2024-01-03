@@ -27,7 +27,7 @@
         <div class="mask-bg">
             <div class="container">
                 <div class="todo-list-container">
-                    <section class="new section-status">
+                    <section class="NEW section-status">
                         <header class="new-header">
                             <h2 class="status-title">Novos Itens </h2>
                             <svg id="new-item-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -56,7 +56,7 @@
                             </div> -->
                         </div>
                     </section>
-                    <section class="doing section-status">
+                    <section class="DOING section-status">
                         <h2 class="status-title">Em Andamento</h2>
                         <div class="cards-container">
 
@@ -66,7 +66,7 @@
 
                         </div>
                     </section>
-                    <section class="finished section-status">
+                    <section class="FINISHED section-status">
                         <h2 class="status-title">Finalizado</h2>
                         <div class="cards-container">
                         </div>
@@ -85,11 +85,11 @@
         <form name="addNewCard">
             <div>
                 <label for="taskTitle">Título</label>
-                <input type="text" name="taskTitle" id="taskTitle">
+                <input type="text" name="taskTitle" id="taskTitle" minlength="3" required >
             </div>
             <div>
                 <label for="taskDescription">Descrição</label>
-                <input type="text" name="taskDescription" id="taskDescription">
+                <input type="text" name="taskDescription" id="taskDescription" minlength="3" required >
             </div>
             <button type="submit">Criar</button>
         </form>
@@ -102,6 +102,10 @@
             <button class="btn-default" id="cancel-delete">Cancelar</button>
         </div>
     </dialog>
+
+    <div id="error-message" class="message">teste</div>
+
+    <div id="success-message" class="message">teste</div>
 
     <footer></footer>
 

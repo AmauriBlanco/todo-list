@@ -2,7 +2,8 @@ const confirmDeleteButton = document.querySelector("#confirm-delete");
 const cancelButton = document.querySelector("#cancel-delete");
 const deleteCardModal = document.querySelector("#delete-confirm");
 
-import { deleteCard } from "../../../api/controller/cardController.js";
+import { deleteCard } from "../../../../api/controller/cardController.js";
+import { successMessage, errorMessage } from "../../events/snackBar.js";
 
 export function btnDel() {
     let cardToDelete;
@@ -27,8 +28,12 @@ export function btnDel() {
 
                     // Feche o modal
                     deleteCardModal.close();
+
+                    // Mensagem de sucesso ao deletar uma tarefa
+                    successMessage("Tarefa deletada com sucesso!");
                 } catch (error) {
-                    console.error("Erro ao excluir o item:", error);
+                    errorMessage(error);
+                    deleteCardModal.close();
                 }
             });
 
@@ -37,18 +42,4 @@ export function btnDel() {
             });
         });
     });
-}
-
-
-
-if(cardStatus === "NEW") {
-    
-}
-
-if(cardStatus === "DOING"){
-    dfdad
-}
-
-if(cardStatus === "FINISHED"){
-    dasdas
 }

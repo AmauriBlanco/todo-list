@@ -1,24 +1,24 @@
+const url = "https://alunos.treinaweb.com.br/twtodos/api/v1/todos";
 async function getAllCards() {
-    return await fetch("https://alunos.treinaweb.com.br/twtodos/api/v1/todos")
+    return await fetch(url)
         .then((response) => {
             return response.json();
         })
         .then((data) => {
             return data;
-        });
+        }).catch((error) => {
+            return error
+        })
 }
 
 async function deleteCard(id) {
     try {
-        const response = await fetch(
-            `https://alunos.treinaweb.com.br/twtodos/api/v1/todos/${id}`,
-            {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+        const response = await fetch(`${url}/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
         if (response.ok) {
             return "Item deletado com sucesso";
@@ -30,8 +30,8 @@ async function deleteCard(id) {
     }
 }
 
-async function createNewCard(title, description = "") {
-    return await fetch("https://alunos.treinaweb.com.br/twtodos/api/v1/todos", {
+async function createNewCard(title, description = null) {
+    return await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -39,6 +39,27 @@ async function createNewCard(title, description = "") {
         body: JSON.stringify({
             title,
             description,
+        }),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Erro ao criar um novo cartão');
+        }
+        return response.json();
+    })
+    .catch((error) => {
+        throw error;
+    });
+}
+
+async function changeStatusCard(id, status) {
+    return await fetch(`${url}/${id}/status`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            status,
         }),
     })
         .then((response) => {
@@ -49,22 +70,4 @@ async function createNewCard(title, description = "") {
         });
 }
 
-export async function changeStatusCard(id, status) {
-    return await fetch(`https://alunos.treinaweb.com.br/twtodos/api/v1/todos/${id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            status,
-        }),
-    })
-       .then((response) => {
-            return response.json();
-        })
-       .then((data) => {
-            return data;
-        })
-}
-
-export { createNewCard, deleteCard, getAllCards };
+export { createNewCard, deleteCard, getAllCards, changeStatusCard };

@@ -1,3 +1,5 @@
+import { changeCardStatus } from "../card/status/changeCardsStatusContainer.js";
+
 const cardsContainer = document.querySelectorAll(".cards-container");
 function setDraggableEvent() {
     const cards = document.querySelectorAll(".card");
@@ -6,8 +8,6 @@ function setDraggableEvent() {
         card.addEventListener("dragstart", dragStart);
     });
 }
-
-setDraggableEvent();
 
 function dragStart(event) {
     const cardIndex = event.target.getAttribute("data-card-index");
@@ -26,6 +26,7 @@ cardsContainer.forEach((dragArea) => {
             `[data-card-index="${cardIndex}"]`
         );
         dragArea.appendChild(draggedCard);
+        changeCardStatus(draggedCard, dragArea);
     });
 });
 
