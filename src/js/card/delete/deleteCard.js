@@ -2,7 +2,7 @@ const confirmDeleteButton = document.querySelector("#confirm-delete");
 const cancelButton = document.querySelector("#cancel-delete");
 const deleteCardModal = document.querySelector("#delete-confirm");
 
-import { deleteCard } from "../../../../api/controller/cardController.js";
+import { deleteCard } from "../../../repository/cardRepository.js";
 import { successMessage, errorMessage } from "../../events/snackBar.js";
 
 export function btnDel() {
@@ -26,15 +26,12 @@ export function btnDel() {
                     // Remova o card do DOM
                     cardToDelete.remove();
 
-                    // Feche o modal
-                    deleteCardModal.close();
-
                     // Mensagem de sucesso ao deletar uma tarefa
                     successMessage("Tarefa deletada com sucesso!");
                 } catch (error) {
                     errorMessage(error);
-                    deleteCardModal.close();
                 }
+                deleteCardModal.close();
             });
 
             cancelButton.addEventListener("click", () => {

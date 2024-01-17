@@ -42,14 +42,9 @@ async function createNewCard(title, description = null) {
         }),
     })
     .then((response) => {
-        if (!response.ok) {
-            throw new Error('Erro ao criar um novo cartão');
-        }
         return response.json();
+       
     })
-    .catch((error) => {
-        throw error;
-    });
 }
 
 async function changeStatusCard(id, status) {

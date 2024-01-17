@@ -1,4 +1,4 @@
-import { getAllCards } from "../../../../api/controller/cardController.js";
+import { getAllCards } from "../../../repository/cardRepository.js";
 import { setDraggableEvent } from "../../events/dragCardEvent.js";
 import { btnDel } from "../delete/deleteCard.js";
 import { changeCardStatusContainer } from "../status/changeCardsStatusContainer.js";
