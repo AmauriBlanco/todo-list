@@ -31,20 +31,27 @@ async function deleteCard(id) {
 }
 
 async function createNewCard(title, description = null) {
-    return await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            title,
-            description,
-        }),
-    })
-    .then((response) => {
-        return response.json();
-       
-    })
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title,
+                description,
+            }),
+        });
+
+        if (!response.ok) {
+            // Se a resposta não for bem-sucedida, rejeitar a promessa com o objeto de erro
+            throw new Error('Erro ao criar nova tarefa');
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
 }
 
 async function changeStatusCard(id, status) {

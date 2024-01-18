@@ -101,13 +101,17 @@
             <button class="btn-default" id="confirm-delete">Excluir</button>
             <button class="btn-default" id="cancel-delete">Cancelar</button>
         </div>
-    </dialog>
+    </dialog>   
 
-    <div id="error-message" class="message"><img src="src/assets/img/x.svg" alt=""></div>
+    <div id="success" class="message">
+        <img src="src/assets/img/success.svg" alt="icone de confirmação">
+        <p id="success-message"></p>
+    </div>
 
-    <div id="success-message" class="message"><img src="src/assets/img/success.svg" alt=""></div>
-
-    <footer></footer>
+    <div id="error" class="message">
+        <img src="src/assets/img/x.svg" alt="icone de cancelado">
+        <p id="error-message"></p>
+    </div>
 
     <script type="module" src="./src/js/index.js"></script>
 </body>

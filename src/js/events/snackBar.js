@@ -1,18 +1,21 @@
 function successMessage(message) {
-    const successMessage = document.getElementById("success-message");
+    const successContainer = document.getElementById("success");
+    const successMessage = successContainer.querySelector("#success-message");
+    console.log(successMessage);
     successMessage.innerHTML = message;
-    successMessage.classList.add("show");
+    successContainer.classList.add("show");
     setTimeout(function () {
-        successMessage.classList.remove("show");
+        successContainer.classList.remove("show");
     }, 3000);
 }
 
 function errorMessage(message) {
-    const errorMessage = document.getElementById("error-message");
-    errorMessage.innerHTML += message;
-    errorMessage.classList.add("show");
+    const errorContainer = document.getElementById("error")
+    const errorMessage = errorContainer.querySelector("#error-message");
+    errorMessage.innerHTML = message;
+    errorContainer.classList.add("show");
     setTimeout(function () {
-        errorMessage.classList.remove("show");
+        errorContainer.classList.remove("show");
     }, 3000);
 }
 

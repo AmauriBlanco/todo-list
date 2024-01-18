@@ -18,13 +18,15 @@ function addNewCard(event) {
                 successMessage(
                     `Tarefa <i>${taskTitle}</i>, criada com sucesso!`
                 );
-                clearForm();
+               
             })
-            .catch(() => {
+            .catch((erro) => {
                 // Mensagem de erro ao criar nova tarefa
-                errorMessage("Houve um problema ao criar a tarefa!");
+                errorMessage(erro);
+                //"Houve um problema ao criar a tarefa!"
             });
         createNewTaskModal.close();
+        clearForm();
     }
 }
 
