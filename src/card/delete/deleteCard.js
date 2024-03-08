@@ -2,7 +2,7 @@ const confirmDeleteButton = document.querySelector("#confirm-delete");
 const cancelButton = document.querySelector("#cancel-delete");
 const deleteCardModal = document.querySelector("#delete-confirm");
 
-import { deleteCard } from "../../../repository/cardRepository.js";
+import { deleteCard } from "../../repository/cardRepository.js";
 import { successMessage, errorMessage } from "../../events/snackBar.js";
 
 export function btnDel() {
@@ -15,8 +15,6 @@ export function btnDel() {
             cardToDelete = button.closest(".card");
 
             const itemId = button.closest(".card").getAttribute("id");
-
-            console.log(itemId);
 
             confirmDeleteButton.addEventListener("click", async () => {
                 try {

@@ -1,15 +1,15 @@
 const url = "https://alunos.treinaweb.com.br/twtodos/api/v1/todos";
+
 async function getAllCards() {
-    return await fetch(url)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            return data;
-        }).catch((error) => {
-            return error
-        })
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
 }
+
 
 async function deleteCard(id) {
     try {
@@ -31,27 +31,22 @@ async function deleteCard(id) {
 }
 
 async function createNewCard(title, description = null) {
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title,
-                description,
-            }),
-        });
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title,
+            description,
+        }),
+    });
 
-        if (!response.ok) {
-            // Se a resposta não for bem-sucedida, rejeitar a promessa com o objeto de erro
-            throw new Error('Erro ao criar nova tarefa');
-        }
-
-        return await response.json();
-    } catch (error) {
-        throw error;
+    if (!response.ok) {
+        throw new Error('Erro ao criar nova tarefa');
     }
+
+    return await response.json();
 }
 
 async function changeStatusCard(id, status) {

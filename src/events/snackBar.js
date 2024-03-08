@@ -1,7 +1,6 @@
 function successMessage(message) {
     const successContainer = document.getElementById("success");
     const successMessage = successContainer.querySelector("#success-message");
-    console.log(successMessage);
     successMessage.innerHTML = message;
     successContainer.classList.add("show");
     setTimeout(function () {

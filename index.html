@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="src/assets/style/style.css">
+    <link rel="stylesheet" href="assets/style/style.css">
 
     <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 <body>
     <header class="header-page">
         <div class="container">
-            <img src="src/assets/img/logo-tw.svg" alt="Logo da empresa" height="25px" width="193px">
+            <img src="assets/img/logo-tw.svg" alt="Logo da empresa" height="25px" width="193px">
         </div>
     </header>
 
@@ -85,11 +85,11 @@
         <form name="addNewCard">
             <div>
                 <label for="taskTitle">Título</label>
-                <input type="text" name="taskTitle" id="taskTitle" minlength="3" required >
+                <input type="text" name="taskTitle" id="taskTitle" minlength="3" maxlength="35" required>
             </div>
             <div>
                 <label for="taskDescription">Descrição</label>
-                <input type="text" name="taskDescription" id="taskDescription" minlength="3" required >
+                <input type="text" name="taskDescription" id="taskDescription" minlength="3" maxlength="35" required>
             </div>
             <button type="submit">Criar</button>
         </form>
@@ -101,19 +101,19 @@
             <button class="btn-default" id="confirm-delete">Excluir</button>
             <button class="btn-default" id="cancel-delete">Cancelar</button>
         </div>
-    </dialog>   
+    </dialog>
 
     <div id="success" class="message">
-        <img src="src/assets/img/success.svg" alt="icone de confirmação">
+        <img src="assets/img/success.svg" alt="icone de confirmação">
         <p id="success-message"></p>
     </div>
 
     <div id="error" class="message">
-        <img src="src/assets/img/x.svg" alt="icone de cancelado">
+        <img src="assets/img/x.svg" alt="icone de cancelado">
         <p id="error-message"></p>
     </div>
 
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/index.js"></script>
 </body>
 
 </html>

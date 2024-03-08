@@ -128,7 +128,6 @@ body {
     text-align: start;
     box-shadow: 2px 2px 5px #00000078;
     position: relative;
-    max-width: 330px;
 }
 
 .card header {

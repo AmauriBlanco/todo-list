@@ -1,5 +1,5 @@
 import { createCardElement } from "../create/createCardElement.js";
-import { changeStatusCard } from "../../../repository/cardRepository.js";
+import { changeStatusCard } from "../../repository/cardRepository.js";
 
 function changeCardStatusContainer(cardList) {
     cardList.forEach((card) => {
