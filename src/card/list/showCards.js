@@ -1,15 +1,15 @@
-import { getAllCards } from "../../repository/cardRepository.js";
+import { getAll } from "../../repository/cardRepository.js";
 import { setDraggableEvent } from "../../events/dragCardEvent.js";
 import { render } from "../create/createCardElement.js";
-import { btnDel } from "../delete/deleteCard.js";
+import { deleteCardEvents } from "../../events/deleteCardEvents.js";
 import { clearCards } from "../../helpers.js";
 import { errorMessage } from "../../events/snackBar.js";
 
 export async function listAllCards() {
     try {
-        const cards = await getAllCards();
+        const cards = await getAll();
 
-        console.log(cards)
+        console.log(cards);
 
         clearCards(); // Limpa cards antigos
 
@@ -19,7 +19,7 @@ export async function listAllCards() {
         });
 
         setDraggableEvent(); // Adiciona evento drag dos cards
-        btnDel(); // Adiciona evento de delete dos cards
+        deleteCardEvents(); // Adiciona evento de delete dos cards
     } catch (error) {
         errorMessage("Erro ao carregar tarefas");
     }

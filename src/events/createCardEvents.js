@@ -4,12 +4,12 @@ import { openModal, closeModal } from "./modalEvents.js";
 const form = document.forms["addNewCard"];
 
 export function createCardEvents() {
-    const btnCreateNewCard = document.getElementById("new-item-icon");
-    const createNewCard = document.getElementById("new-item");
-    const btnCloseCreateNewCard = document.querySelector(".close");
+    const btncreateNew = document.getElementById("new-item-icon");
+    const createNew = document.getElementById("new-item");
+    const btnClosecreateNew = document.querySelector(".close");
 
-    openModal(btnCreateNewCard, createNewCard);
-    closeModal(btnCloseCreateNewCard, createNewCard);
+    openModal(btncreateNew, createNew);
+    closeModal(btnClosecreateNew, createNew);
 
     form.addEventListener("submit", addNewCard);
 }

@@ -1,40 +1,20 @@
-const confirmDeleteButton = document.querySelector("#confirm-delete");
-const cancelButton = document.querySelector("#cancel-delete");
 const deleteCardModal = document.querySelector("#delete-confirm");
 
-import { deleteCard } from "../../repository/cardRepository.js";
+import { deleteById } from "../../repository/cardRepository.js";
 import { successMessage, errorMessage } from "../../events/snackBar.js";
 
-export function btnDel() {
-    let cardToDelete;
-    const btnDeleteCard = document.querySelectorAll(".delete-item");
+export async function deleteCard(itemId, cardToDelete) {
+    try {
+        // Chame a função deleteCard com o ID do item
+        await deleteById(itemId);
 
-    btnDeleteCard.forEach((button) => {
-        button.addEventListener("click", async () => {
-            deleteCardModal.showModal();
-            cardToDelete = button.closest(".card");
+        // Remova o card do DOM
+        cardToDelete.remove();
 
-            const itemId = button.closest(".card").getAttribute("id");
-
-            confirmDeleteButton.addEventListener("click", async () => {
-                try {
-                    // Chame a função deleteCard com o ID do item
-                    await deleteCard(itemId);
-
-                    // Remova o card do DOM
-                    cardToDelete.remove();
-
-                    // Mensagem de sucesso ao deletar uma tarefa
-                    successMessage("Tarefa deletada com sucesso!");
-                } catch (error) {
-                    errorMessage(error);
-                }
-                deleteCardModal.close();
-            });
-
-            cancelButton.addEventListener("click", () => {
-                deleteCardModal.close();
-            });
-        });
-    });
+        // Mensagem de sucesso ao deletar uma tarefa
+        successMessage("Tarefa deletada com sucesso!");
+    } catch (error) {
+        errorMessage(error);
+    }
+    deleteCardModal.close();
 }

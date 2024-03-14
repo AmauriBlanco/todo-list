@@ -1,6 +1,6 @@
 const url = "https://alunos.treinaweb.com.br/twtodos/api/v1/todos";
 
-async function getAllCards() {
+async function getAll() {
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -10,8 +10,7 @@ async function getAllCards() {
     }
 }
 
-
-async function deleteCard(id) {
+async function deleteById(id) {
     const response = await fetch(`${url}/${id}`, {
         method: "DELETE",
         headers: {
@@ -26,7 +25,7 @@ async function deleteCard(id) {
     return "Item deletado com sucesso";
 }
 
-async function createNewCard(title, description = null) {
+async function createNew(title, description = null) {
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -39,13 +38,13 @@ async function createNewCard(title, description = null) {
     });
 
     if (!response.ok) {
-        throw new Error('Erro ao criar nova tarefa');
+        throw new Error("Erro ao criar nova tarefa");
     }
 
     return await response.json();
 }
 
-async function changeStatusCard(id, status) {
+async function changeStatus(id, status) {
     const response = await fetch(`${url}/${id}/status`, {
         method: "PATCH",
         headers: {
@@ -57,10 +56,10 @@ async function changeStatusCard(id, status) {
     });
 
     if (!response.ok) {
-        throw new Error('Erro ao alterar status do cartão');
+        throw new Error("Erro ao alterar status do cartão");
     }
 
     return await response.json();
 }
 
-export { createNewCard, deleteCard, getAllCards, changeStatusCard };
+export { createNew, deleteById, getAll, changeStatus };

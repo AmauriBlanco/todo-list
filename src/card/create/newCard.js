@@ -1,4 +1,4 @@
-import { createNewCard } from "../../repository/cardRepository.js";
+import { createNew } from "../../repository/cardRepository.js";
 import { listAllCards } from "../list/showCards.js";
 import { successMessage, errorMessage } from "../../events/snackBar.js";
 import { clearForm } from "../../helpers.js";
@@ -11,8 +11,8 @@ async function addNewCard(event) {
 
     if (taskTitle && taskDescription) {
         try {
-            const newCard = await createNewCard(taskTitle, taskDescription);
-            
+            await createNew(taskTitle, taskDescription);
+
             // Mensagem de sucesso ao criar nova tarefa
             successMessage(`Tarefa <i>${taskTitle}</i>, criada com sucesso!`);
 
