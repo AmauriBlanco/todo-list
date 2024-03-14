@@ -1,13 +1,6 @@
-import { createCardElement } from "../create/createCardElement.js";
 import { changeStatusCard } from "../../repository/cardRepository.js";
 
-function changeCardStatusContainer(cardList) {
-    cardList.forEach((card) => {
-        return createCardElement(card);
-    });
-}
-
-function changeCardStatus(card, statusArea) {
+export function changeCardStatus(card, statusArea) {
     const cardStatus = statusArea.parentNode;
     if (cardStatus.classList.contains("NEW")) {
         changeStatusCard(card.id, "NEW");
@@ -19,5 +12,3 @@ function changeCardStatus(card, statusArea) {
         changeStatusCard(card.id, "FINISHED");
     }
 }
-
-export { changeCardStatus, changeCardStatusContainer };

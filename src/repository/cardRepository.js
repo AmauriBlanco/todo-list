@@ -12,22 +12,18 @@ async function getAllCards() {
 
 
 async function deleteCard(id) {
-    try {
-        const response = await fetch(`${url}/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+    const response = await fetch(`${url}/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 
-        if (response.ok) {
-            return "Item deletado com sucesso";
-        } else {
-            throw new Error("Falha ao deletar o item");
-        }
-    } catch (error) {
-        throw new Error("Erro ao tentar deletar o item");
+    if (!response.ok) {
+        throw new Error("Falha ao deletar o item");
     }
+
+    return "Item deletado com sucesso";
 }
 
 async function createNewCard(title, description = null) {
@@ -50,7 +46,7 @@ async function createNewCard(title, description = null) {
 }
 
 async function changeStatusCard(id, status) {
-    return await fetch(`${url}/${id}/status`, {
+    const response = await fetch(`${url}/${id}/status`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -58,13 +54,13 @@ async function changeStatusCard(id, status) {
         body: JSON.stringify({
             status,
         }),
-    })
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            return data;
-        });
+    });
+
+    if (!response.ok) {
+        throw new Error('Erro ao alterar status do cartão');
+    }
+
+    return await response.json();
 }
 
 export { createNewCard, deleteCard, getAllCards, changeStatusCard };

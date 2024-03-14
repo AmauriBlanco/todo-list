@@ -11,13 +11,13 @@ async function addNewCard(event) {
 
     if (taskTitle && taskDescription) {
         try {
-            const createNewTaskPromise = createNewCard(taskTitle, taskDescription);
-            const listAllCardsPromise = listAllCards();
-
-            await Promise.all([createNewTaskPromise, listAllCardsPromise]);
-
+            const newCard = await createNewCard(taskTitle, taskDescription);
+            
             // Mensagem de sucesso ao criar nova tarefa
             successMessage(`Tarefa <i>${taskTitle}</i>, criada com sucesso!`);
+
+            // Listar todas as tarefas novamente
+            await listAllCards();
 
             const createNewTaskModal = document.getElementById("new-item");
             createNewTaskModal.close();
