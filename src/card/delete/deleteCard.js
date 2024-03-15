@@ -1,7 +1,5 @@
-const deleteCardModal = document.querySelector("#delete-confirm");
-
 import { deleteById } from "../../repository/cardRepository.js";
-import { successMessage, errorMessage } from "../../events/snackBar.js";
+import { successMessage, errorMessage } from "../../snackBar.js";
 
 export async function deleteCard(itemId, cardToDelete) {
     try {
@@ -16,5 +14,7 @@ export async function deleteCard(itemId, cardToDelete) {
     } catch (error) {
         errorMessage(error);
     }
+
+    const deleteCardModal = document.querySelector("#delete-confirm");
     deleteCardModal.close();
 }

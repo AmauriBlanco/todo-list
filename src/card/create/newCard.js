@@ -1,6 +1,6 @@
 import { createNew } from "../../repository/cardRepository.js";
 import { listAllCards } from "../list/showCards.js";
-import { successMessage, errorMessage } from "../../events/snackBar.js";
+import { successMessage, errorMessage } from "../../snackBar.js";
 import { clearForm } from "../../helpers.js";
 
 async function addNewCard(event) {
@@ -21,6 +21,7 @@ async function addNewCard(event) {
 
             const createNewTaskModal = document.getElementById("new-item");
             createNewTaskModal.close();
+
             clearForm();
         } catch (error) {
             // Mensagem de erro ao criar nova tarefa

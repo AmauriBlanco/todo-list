@@ -1,27 +1,40 @@
-const confirmDeleteButton = document.querySelector("#confirm-delete");
-const cancelButton = document.querySelector("#cancel-delete");
-const deleteCardModal = document.querySelector("#delete-confirm");
-
 import { deleteCard } from "../card/delete/deleteCard.js";
 
 export function deleteCardEvents() {
-    let cardToDelete;
-    const btnDeleteCard = document.querySelectorAll(".delete-item");
+    const buttonsDeleteCard = document.querySelectorAll(".delete-item");
 
-    btnDeleteCard.forEach((button) => {
+    buttonsDeleteCard.forEach((button) => {
         button.addEventListener("click", async () => {
-            deleteCardModal.showModal();
-            cardToDelete = button.closest(".card");
+            showDeleteModalEvent();
 
-            const itemId = button.closest(".card").getAttribute("id");
-
-            confirmDeleteButton.addEventListener("click", async () => {
-                deleteCard(itemId, cardToDelete);
-            });
-
-            cancelButton.addEventListener("click", () => {
-                deleteCardModal.close();
-            });
+            confirmDeleteButtonEvent(button)
+            
+            cancelDeleteButtonEvent();
         });
     });
+}
+
+function showDeleteModalEvent() {
+    getDeleteModal().showModal();
+}
+
+function confirmDeleteButtonEvent(button) {
+    const confirmDeleteButton = document.querySelector("#confirm-delete");
+    confirmDeleteButton.addEventListener("click", async () => {
+        let cardToDelete = button.closest(".card");
+        const itemId = button.closest(".card").getAttribute("id");
+
+        deleteCard(itemId, cardToDelete);
+    });
+}
+
+function cancelDeleteButtonEvent() {
+    const cancelButton = document.querySelector("#cancel-delete");
+    cancelButton.addEventListener("click", () => {
+        getDeleteModal().close();
+    });
+}
+
+function getDeleteModal() {
+    return document.querySelector("#delete-confirm");
 }

@@ -1,7 +1,7 @@
 import { changeCardStatus } from "../card/status/changeCardsStatusContainer.js";
 
 const cardsContainer = document.querySelectorAll(".cards-container");
-function setDraggableEvent() {
+function dragCardEvents() {
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         card.setAttribute("data-card-index", index);
@@ -30,4 +30,4 @@ cardsContainer.forEach((dragArea) => {
     });
 });
 
-export { setDraggableEvent };
+export { dragCardEvents };
