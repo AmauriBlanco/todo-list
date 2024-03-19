@@ -1,25 +1,12 @@
-function successMessage(message) {
-    const successContainer = document.getElementById("success");
-    const successMessage = successContainer.querySelector("#success-message");
+export function statusMessage(message, type, time = 3000) {
+    let containerMessage = document.getElementById(type);
+    let typeMessage = containerMessage.querySelector(`#${type}-message`);
 
-    successMessage.innerHTML = message;
-    successContainer.classList.add("show");
-    
-    setTimeout(function () {
-        successContainer.classList.remove("show");
-    }, 3000);
-}
-
-function errorMessage(message) {
-    const errorContainer = document.getElementById("error")
-    const errorMessage = errorContainer.querySelector("#error-message");
-
-    errorMessage.innerHTML = message;
-    errorContainer.classList.add("show");
+    typeMessage.innerHTML = message;
+    containerMessage.classList.add("show");
 
     setTimeout(function () {
-        errorContainer.classList.remove("show");
-    }, 3000);
+        containerMessage.classList.remove("show");
+        typeMessage.innerHTML = "";
+    }, time);
 }
-
-export { successMessage, errorMessage };

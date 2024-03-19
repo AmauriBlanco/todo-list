@@ -21,7 +21,6 @@ async function deleteById(id) {
     if (!response.ok) {
         throw new Error("Falha ao deletar o item");
     }
-
     return "Item deletado com sucesso";
 }
 

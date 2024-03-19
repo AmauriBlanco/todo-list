@@ -1,13 +1,15 @@
 export function render(card) {
-    const statusContainer = document.querySelector(`.${card.status} .cards-container`)
-    const cardElement =  `
+    const statusContainer = document.querySelector(
+        `.${card.status} .cards-container`
+    );
+    const cardElement = `
             <div class="card" draggable="true" id="${card.id}">
                 <header>
                     <h3>${card.title}</h3>
                     <span class="status" data-status="${card.status}"></span>
                 </header>
                 ${card.description ? `<p>${card.description}</p>` : ""}
-                <button class="delete-item">
+                <button class="delete-item" id="${card.id}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-trash3" viewBox="0 0 16 16">
                         <path
@@ -16,5 +18,5 @@ export function render(card) {
                 </button>
             </div>
         `;
-        return statusContainer.innerHTML += cardElement;
+    return (statusContainer.innerHTML += cardElement);
 }

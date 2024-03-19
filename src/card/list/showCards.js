@@ -3,7 +3,7 @@ import { dragCardEvents } from "../../events/dragCardEvents.js";
 import { render } from "../create/createCardElement.js";
 import { deleteCardEvents } from "../../events/deleteCardEvents.js";
 import { clearCards } from "../../helpers.js";
-import { errorMessage } from "../../snackBar.js";
+import { statusMessage } from "../../snackBar.js";
 
 export async function listAllCards() {
     try {
@@ -19,6 +19,6 @@ export async function listAllCards() {
         dragCardEvents(); // Adiciona evento drag dos cards
         deleteCardEvents(); // Adiciona evento de delete dos cards
     } catch (error) {
-        errorMessage("Erro ao carregar tarefas");
+        statusMessage("Erro ao carregar tarefas", 'error');
     }
 }

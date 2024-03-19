@@ -1,6 +1,6 @@
 import { createNew } from "../../repository/cardRepository.js";
 import { listAllCards } from "../list/showCards.js";
-import { successMessage, errorMessage } from "../../snackBar.js";
+import { statusMessage } from "../../snackBar.js";
 import { clearForm } from "../../helpers.js";
 
 async function addNewCard(event) {
@@ -14,7 +14,10 @@ async function addNewCard(event) {
             await createNew(taskTitle, taskDescription);
 
             // Mensagem de sucesso ao criar nova tarefa
-            successMessage(`Tarefa <i>${taskTitle}</i>, criada com sucesso!`);
+            statusMessage(
+                `Tarefa <i>${taskTitle}</i>, criada com sucesso!`,
+                "success"
+            );
 
             // Listar todas as tarefas novamente
             await listAllCards();
@@ -25,7 +28,7 @@ async function addNewCard(event) {
             clearForm();
         } catch (error) {
             // Mensagem de erro ao criar nova tarefa
-            errorMessage(error);
+            statusMessage(error, "error");
             //"Houve um problema ao criar a tarefa!"
         }
     }

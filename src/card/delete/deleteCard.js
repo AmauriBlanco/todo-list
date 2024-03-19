@@ -1,5 +1,5 @@
 import { deleteById } from "../../repository/cardRepository.js";
-import { successMessage, errorMessage } from "../../snackBar.js";
+import { statusMessage } from "../../snackBar.js";
 
 export async function deleteCard(itemId, cardToDelete) {
     try {
@@ -10,9 +10,9 @@ export async function deleteCard(itemId, cardToDelete) {
         cardToDelete.remove();
 
         // Mensagem de sucesso ao deletar uma tarefa
-        successMessage("Tarefa deletada com sucesso!");
+        statusMessage("Tarefa deletada com sucesso!", "success");
     } catch (error) {
-        errorMessage(error);
+        statusMessage(error, "error");
     }
 
     const deleteCardModal = document.querySelector("#delete-confirm");
