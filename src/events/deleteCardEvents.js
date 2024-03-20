@@ -2,15 +2,15 @@ import { deleteCard } from "../card/delete/deleteCard.js";
 
 export function deleteCardEvents() {
     const buttonsDeleteCard = document.querySelectorAll(".delete-item");
-    console.log(buttonsDeleteCard);
 
     buttonsDeleteCard.forEach((button) => {
         button.addEventListener("click", async () => {
             showDeleteModalEvent();
-            const confirmDeleteButton =
-                document.querySelector("#confirm-delete");
-            let getCardToRemove = confirmDeleteButtonEvent(button, confirmDeleteButton);
-            cancelDeleteButtonEvent(confirmDeleteButton, getCardToRemove);
+
+            const confirmDeleteButton = document.querySelector("#confirm-delete");
+            let deleteCardFn = confirmDeleteButtonEvent(button, confirmDeleteButton);
+
+            cancelDeleteButtonEvent(confirmDeleteButton, deleteCardFn);
         });
     });
 }
@@ -20,27 +20,26 @@ function showDeleteModalEvent() {
 }
 
 function confirmDeleteButtonEvent(button, confirmDeleteButton) {
-    let getCardToRemove = async () => {
-        //let cardToDelete = button.closest(".card");
-        console.log(button);
+    let deleteCardFn = async () => {
         const itemId = button.getAttribute("id");
 
         let cardToDelete = document.getElementById(itemId);
 
         deleteCard(itemId, cardToDelete);
-        confirmDeleteButton.removeEventListener("click", getCardToRemove);
+        confirmDeleteButton.removeEventListener("click", deleteCardFn);
     };
 
-    confirmDeleteButton.addEventListener("click", getCardToRemove);
+    confirmDeleteButton.addEventListener("click", deleteCardFn);
 
-    return getCardToRemove;
+    return deleteCardFn;
 }
 
-function cancelDeleteButtonEvent(confirmDeleteButton, getCardToRemove) {
+function cancelDeleteButtonEvent(confirmDeleteButton, deleteCardFn) {
     const cancelButton = document.querySelector("#cancel-delete");
+    
     cancelButton.addEventListener("click", () => {
         getDeleteModal().close();
-        confirmDeleteButton.removeEventListener("click", getCardToRemove);
+        confirmDeleteButton.removeEventListener("click", deleteCardFn);
     });
 }
 
