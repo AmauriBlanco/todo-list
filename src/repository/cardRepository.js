@@ -1,21 +1,19 @@
-const url = "https://alunos.treinaweb.com.br/twtodos/api/v1/todos";
+import { myFetch } from "../helpers.js";
 
 async function getAll() {
     try {
-        const response = await fetch(url);
+        const response = await myFetch("/todos");
         const data = await response.json();
         return data;
     } catch (error) {
+        console.log(error);
         return error;
     }
 }
 
 async function deleteById(id) {
-    const response = await fetch(`${url}/${id}`, {
+    const response = await myFetch(`/todos/${id}`, {
         method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
     });
 
     if (!response.ok) {
@@ -25,11 +23,8 @@ async function deleteById(id) {
 }
 
 async function createNew(title, description = null) {
-    const response = await fetch(url, {
+    const response = await myFetch("/todos", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
         body: JSON.stringify({
             title,
             description,
@@ -44,11 +39,8 @@ async function createNew(title, description = null) {
 }
 
 async function changeStatus(id, status) {
-    const response = await fetch(`${url}/${id}/status`, {
+    const response = await myFetch(`/todos/${id}/status`, {
         method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
         body: JSON.stringify({
             status,
         }),

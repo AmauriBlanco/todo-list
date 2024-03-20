@@ -14,4 +14,23 @@ function clearCards() {
     );
 }
 
-export { clearForm, clearCards };
+function myFetch(path, options = {}) {
+    const defaultHeaders = {
+      'Content-Type': 'application/json', // Adjust as needed
+      // Add other default headers here
+    };
+  
+    const mergedOptions = {
+      ...options, // Spread existing options
+      headers: {
+        ...defaultHeaders,
+        ...options.headers, // Override defaults with specific headers
+      },
+    };
+
+    let url = `https://alunos.treinaweb.com.br/twtodos/api/v1${path}`;
+  
+    return fetch(url, mergedOptions);
+  }
+
+export { clearForm, clearCards, myFetch };
