@@ -2,6 +2,7 @@ export function render(card) {
     const statusContainer = document.querySelector(
         `.${card.status} .cards-container`
     );
+    
     const cardElement = `
             <div class="card" draggable="true" id="${card.id}">
                 <header>
@@ -17,6 +18,7 @@ export function render(card) {
                     </svg>
                 </button>
             </div>
-        `;
-    return (statusContainer.innerHTML += cardElement);
+    `;
+
+    statusContainer.innerHTML += cardElement;
 }

@@ -13,7 +13,7 @@ export async function listAllCards() {
 
         // Distribui os cards baseado no seu status
         cards.forEach((card) => {
-            return render(card);
+            render(card);
         });
 
         dragCardEvents(); // Adiciona evento drag dos cards
