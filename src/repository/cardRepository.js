@@ -4,9 +4,9 @@ async function getAll() {
     try {
         const response = await myFetch("/todos");
         const data = await response.json();
+
         return data;
     } catch (error) {
-        console.log(error);
         return error;
     }
 }
@@ -19,6 +19,7 @@ async function deleteById(id) {
     if (!response.ok) {
         throw new Error("Falha ao deletar o item");
     }
+
     return "Item deletado com sucesso";
 }
 
