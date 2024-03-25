@@ -1,12 +1,12 @@
 import { changeCardStatus } from "../card/status/changeCardsStatusContainer.js";
 
-const cardsContainer = document.querySelectorAll(".cards-container");
 function dragCardEvents() {
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         card.setAttribute("data-card-index", index);
         card.addEventListener("dragstart", dragStart);
     });
+    setupDragAndDrop();
 }
 
 function dragStart(event) {
@@ -14,20 +14,27 @@ function dragStart(event) {
     event.dataTransfer.setData("text/plain", cardIndex);
 }
 
-cardsContainer.forEach((dragArea) => {
-    dragArea.addEventListener("dragover", function (event) {
-        event.preventDefault();
-    });
+function setupDragAndDrop() {
+    const cardsContainer = document.querySelectorAll(".cards-container");
+    cardsContainer.forEach((cardDrop) => {
+        cardDrop.addEventListener("dragover", function (event) {
+            event.preventDefault();
+        });
 
-    dragArea.addEventListener("drop", (event) => {
+        dropArea(cardDrop);
+    });
+}
+
+function dropArea(cardDrop) {
+    cardDrop.addEventListener("drop", (event) => {
         event.preventDefault();
         const cardIndex = event.dataTransfer.getData("text/plain");
         const draggedCard = document.querySelector(
             `[data-card-index="${cardIndex}"]`
         );
-        dragArea.appendChild(draggedCard);
-        changeCardStatus(draggedCard, dragArea);
+        cardDrop.appendChild(draggedCard);
+        changeCardStatus(draggedCard, cardDrop);
     });
-});
+}
 
 export { dragCardEvents };
