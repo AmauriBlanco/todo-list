@@ -196,13 +196,13 @@ body {
     background-color: #0000008a;
 }
 
-#new-item div {
+#new-card-modal div {
     display: flex;
     flex-direction: column;
     color: rgb(184, 181, 181);
 }
 
-#new-item input {
+#new-card-modal input {
     background-color: #272727;
     margin: 10px 0;
     border: solid 1px rgba(128, 128, 128, 0.555);
@@ -212,7 +212,7 @@ body {
     width: 20rem;
 }
 
-#new-item button {
+#new-card-modal button {
     margin-top: 1rem;
     background-color: #5065c9;
     color: #e7e7e7;
@@ -225,11 +225,11 @@ body {
     box-shadow: 2px 2px 7px 1px #0000006e;
 }
 
-#new-item button:hover {
+#new-card-modal button:hover {
     transform: scale(1.05);
 }
 
-#new-item .close {
+#new-card-modal .close-new-card-modal {
     position: absolute;
     right: 0;
     top: 0;
@@ -273,7 +273,6 @@ body {
 
 #success {
     background-color: #1e9131;
-    
 }
 
 .message {
@@ -283,7 +282,7 @@ body {
     gap: 10px;
     bottom: 20px;
     right: 20px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     text-align: center;
     border-radius: 3px;
     width: 0;
@@ -298,11 +297,9 @@ body {
     padding: 10px 20px;
 }
 
-
-
 /* BreakPoints */
 
-@media(max-width: 992px) {
+@media (max-width: 992px) {
     .todo-list-container {
         grid-template-columns: repeat(1, 1fr);
         gap: 1rem;
